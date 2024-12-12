@@ -6,6 +6,7 @@ const r3c1 = document.getElementById("r3c1");
 const r1c2 = document.getElementById("r1c2");
 const r2c2 = document.getElementById("r2c2");
 const r3c2 = document.getElementById("r3c2");
+const score_value = document.querySelector(".score");
 let score = 0;
 let currentLetterIndex = 0;
 
@@ -142,6 +143,7 @@ function checkLetter() {
 
   if (entry === currentLetter) {
     score++;
+    score_value.textContent = score;
     console.log(`Correct! Score: ${score}`);
 
     // Speak the correct letter

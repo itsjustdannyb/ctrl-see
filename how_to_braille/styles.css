@@ -37,13 +37,26 @@
   min-height: 100vh;
 }
 
-.entry {
-  width: 50px;
-  border: none;
-  text-align: center;
+.score {
+  margin-bottom: 15px;
+  margin-left: 15px;
+  color: white;
 }
 
-cell properties #r1c1 {
+.entry {
+  width: 75px;
+  margin-left: 15px;
+  height: 25px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* cell properties  */
+/* #r1c1 {
   background-color: #000000;
 }
 #r2c1 {
@@ -60,4 +73,15 @@ cell properties #r1c1 {
 }
 #r3c2 {
   background-color: #000000;
+} */
+
+.btn {
+  width: 75px;
+  margin-left: 15px;
+  height: 35px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 25px;
+  background-color: black;
+  color: #fff;
 }
