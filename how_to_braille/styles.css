@@ -9,9 +9,13 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #000;
+  background-color: #221903;
   margin-bottom: 15px;
   margin-left: 15px;
+}
+
+.cell:hover {
+  cursor: pointer;
 }
 
 .class {
@@ -50,30 +54,15 @@
   border-width: 1px;
   border-style: solid;
   border-radius: 5px;
+  border: none;
   color: #fff;
   text-align: center;
   margin-bottom: 15px;
 }
 
-/* cell properties  */
-/* #r1c1 {
-  background-color: #000000;
+.entry:active {
+  border: none;
 }
-#r2c1 {
-  background-color: #ffffff;
-}
-#r3c1 {
-  background-color: #ffffff;
-}
-#r1c2 {
-  background-color: #ffffff;
-}
-#r2c2 {
-  background-color: #000000;
-}
-#r3c2 {
-  background-color: #000000;
-} */
 
 .btn {
   width: 75px;
@@ -84,4 +73,14 @@
   border-radius: 25px;
   background-color: black;
   color: #fff;
+}
+
+.logo {
+  width: 5%;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.logo:hover {
+  cursor: pointer;
 }

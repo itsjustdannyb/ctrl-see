@@ -6,6 +6,7 @@ const r3c1 = document.getElementById("r3c1");
 const r1c2 = document.getElementById("r1c2");
 const r2c2 = document.getElementById("r2c2");
 const r3c2 = document.getElementById("r3c2");
+
 const score_value = document.querySelector(".score");
 let score = 0;
 let currentLetterIndex = 0;
@@ -28,6 +29,7 @@ const letters = [
   "O",
   "P",
   "Q",
+  "R",
   "S",
   "T",
   "U",
@@ -75,54 +77,6 @@ function displayBrailleLetter(pattern) {
   });
 }
 
-// // check letters
-// function checkLetter(letter) {
-//   const entryInput = document.querySelector(".entry");
-//   const entry = entryInput.value.trim().toUpperCase();
-//   const currentLetter = letters[currentLetterIndex];
-
-//   if (entry === currentLetter) {
-//     score++;
-//     console.log(`correct! ${score}`);
-
-//     // move to the next letter
-//     currentLetterIndex++;
-
-//     // check if all letters have been traversed
-//     if (currentLetterIndex < letters.length) {
-//       // display the next letter
-//       const nextLetter = letters[currentLetterIndex];
-//       displayBrailleLetter(braillePatterns[nextLetter]);
-//     } else {
-//       console.log("All letters completed!");
-//     }
-//   } else {
-//     console.log("try again!");
-//   }
-//   entryInput.value = "";
-// }
-
-// // function showAndCheckLetters(letter) {
-// //   displayBrailleLetter(braillePatterns[letter]);
-// //   checkLetters(letter);
-// // }
-
-// function startGame() {
-//   const firstLetter = letters[currentLetterIndex];
-//   displayBrailleLetter(braillePatterns[firstLetter]);
-//   console.log(firstLetter);
-
-//   // check letters
-//   const checkButton = document
-//     .querySelector(".check")
-//     .addEventListener("click", checkLetter);
-// }
-
-// // start game
-// document.addEventListener("DOMContentLoaded", startGame);
-
-// !! text to speech
-
 // Add a function to speak the current letter
 function speakLetter(letter) {
   // Create a new speech synthesis utterance
@@ -138,6 +92,7 @@ function speakLetter(letter) {
 
 function checkLetter() {
   const entryInput = document.querySelector(".entry");
+  entryInput.focus();
   const entry = entryInput.value.trim().toUpperCase();
   const currentLetter = letters[currentLetterIndex];
 
@@ -162,6 +117,7 @@ function checkLetter() {
       speakLetter(nextLetter);
     } else {
       console.log("All letters completed!");
+      speakLetter("All letters completed!");
     }
   } else {
     console.log("Try again!");
@@ -178,12 +134,11 @@ function startGame() {
   // Speak the first letter when the game starts
   speakLetter(firstLetter);
 
-  console.log(firstLetter);
-
-  // Add event listener for check button
-  const checkButton = document.querySelector(".check");
-  checkButton.addEventListener("click", checkLetter);
+  // Add event listener for checking entry on "input"
+  const entryCheck = document.querySelector(".entry");
+  entryCheck.addEventListener("input", checkLetter);
 }
 
 // Start game when DOM is loaded
+// speakLetter("A");
 document.addEventListener("DOMContentLoaded", startGame);
