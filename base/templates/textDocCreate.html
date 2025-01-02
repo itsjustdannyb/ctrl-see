@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{%block header%}
+    {{form.media}}
+{%endblock%}
+
+{% block content %}
+{%if form.instance.pk%}
+<h1>Edit Document</h1>
+{%else%}
+<h1>Create Document</h1>
+{%endif%}
+<div class="document-edit-container">
+    <form method="post">
+        {% csrf_token%}
+
+        {{form.as_p}}
+        <button onclick="dispose()" id="cancelBtn" style="padding: 10px;">
+            Cancel
+        </button>
+        <button type="submit" style="float: right;padding: 10px;">
+            {%if form.instance.pk%}
+                <a href="{%url 'text-update' form.instance.pk%}">Update Document</a>
+            {%else%}
+                Create Document
+            {%endif%}
+            </button>
+    </form>
+
+    <div class="text-to-speech-controls">
+        <button id="startSpeech">Start Reading</button>
+        <button id="pauseSpeech">Pause</button>
+        <button id="resumeSpeech">Resume</button>
+        <label>
+            Speaking Rate: 
+            <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="1">
+        </label>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const textareas = document.querySelectorAll('textarea');
+    const startButton = document.getElementById('startSpeech');
+    const pauseButton = document.getElementById('pauseSpeech');
+    const resumeButton = document.getElementById('resumeSpeech');
+    const rateControl = document.getElementById('speechRate');
+
+    let speechSynthesis = window.speechSynthesis;
+    let currentUtterance = null;
+
+    function stripHtmlTags(html) {
+        const temp = document.createElement('div');
+        temp.innerHTML = html;
+        return temp.textContent || temp.innerText || '';
+    }
+
+    function readText() {
+        // Combine text from all textareas, stripping HTML tags
+        const textToRead = Array.from(textareas)
+            .map(textarea => stripHtmlTags(textarea.value))
+            .join(' ')
+            .trim();
+
+        if (textToRead) {
+            // Cancel any ongoing speech
+            speechSynthesis.cancel();
+
+            // Create a new utterance
+            currentUtterance = new SpeechSynthesisUtterance(textToRead);
+            
+            // Adjust speaking rate
+            currentUtterance.rate = rateControl.value;
+
+            // Speak the text
+            speechSynthesis.speak(currentUtterance);
+        }
+    }
+
+    startButton.addEventListener('click', readText);
+
+    pauseButton.addEventListener('click', () => {
+        speechSynthesis.pause();
+    });
+
+    resumeButton.addEventListener('click', () => {
+        speechSynthesis.resume();
+    });
+
+    rateControl.addEventListener('change', () => {
+        if (currentUtterance) {
+            // Update rate if text is currently being spoken
+            currentUtterance.rate = rateControl.value;
+        }
+    });
+});
+</script>
+{% endblock %}
