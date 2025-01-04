@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+{% block content %}
+    <h1> Document </h1>
+    <div style="display:flex; flex-direction: column;">
+        {% for text in object_list %}
+            <a href="{%url 'text-detail' pk=text.id %}">{{text.title}}</a>
+
+            {%empty%}
+                <li>No text Document available</li>
+        {%endfor%}
+    </div>
+    <div>
+        <button><a href='{%url "text-create" %}'>Create text Document</a></button>
+    </div>
+    <div id="dynamicEditor"></div>
+
+    {# scripts to handle editor behavior #}
+    {{media}}
+
+    <script>
+        const wrapper = document.getElementById('dynamicEditor');
+
+        function create_article(){
+            fetch("{% url 'text-create' %}")
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(html => {
+                wrapper.innerHTML = html;
+            })
+            .catch(error => console.error('Request error:', error));
+        } 
+        function dispose(){
+            wrapper.innerHTML = "";
+        }
+    </script>
+
+
+{%endblock%}

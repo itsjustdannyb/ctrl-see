@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{%block header%}
+    {{form.media}}
+{%endblock%}
+
+{%block content%}
+<a href="{%url 'speech' object.id %}">
+    <button>Speech</button>
+</a>
+<div style="display:flex; flex-direction: column;">
+    <a href="{%url 'text-update' object.id %}"><h1>{{object.title}}</h1></a>
+    <div>
+        {% autoescape off %}
+            {{object.text}}
+        {% endautoescape %}
+    </div>
+</div>
+
+
+{%endblock%}
