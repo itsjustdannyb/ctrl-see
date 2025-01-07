@@ -11,6 +11,13 @@ const score_value = document.querySelector(".score");
 let score = 0;
 let currentLetterIndex = 0;
 
+const ham = document.querySelector(".ham");
+const menu = document.querySelector(".menu");
+
+const opt_1 = document.querySelector(".opt-1");
+const opt_2 = document.querySelector(".opt-2");
+const opt_3 = document.querySelector(".opt-3");
+
 const letters = [
   "A",
   "B",
@@ -70,6 +77,20 @@ const braillePatterns = {
   Z: [1, 0, 1, 0, 1, 1], // ⠵
 };
 
+ham.addEventListener("click", function () {
+  if (menu.classList.contains("hide")) {
+    menu.classList.remove("hide");
+  } else {
+    menu.classList.add("hide");
+  }
+});
+
+opt_1.addEventListener("click", function () {
+  // run the normal code
+  startGame();
+  console.log("option 1 selected");
+});
+
 function displayBrailleLetter(pattern) {
   const cells = [r1c1, r2c1, r3c1, r1c2, r2c2, r3c2];
   cells.forEach((cell, index) => {
@@ -118,6 +139,10 @@ function checkLetter() {
     } else {
       console.log("All letters completed!");
       speakLetter("All letters completed!");
+      displayBrailleLetter(braillePatterns["A"]);
+      currentLetterIndex = 0;
+      score = 0;
+      score_value.textContent = score;
     }
   } else {
     console.log("Try again!");
@@ -128,6 +153,9 @@ function checkLetter() {
 }
 
 function startGame() {
+  currentLetterIndex = 0;
+  score = 0;
+  score_value.textContent = score;
   const firstLetter = letters[currentLetterIndex];
   displayBrailleLetter(braillePatterns[firstLetter]);
 
@@ -138,7 +166,6 @@ function startGame() {
   const entryCheck = document.querySelector(".entry");
   entryCheck.addEventListener("input", checkLetter);
 }
-
 // Start game when DOM is loaded
 // speakLetter("A");
 document.addEventListener("DOMContentLoaded", startGame);

@@ -6,8 +6,8 @@
 }
 
 .cell {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background-color: #221903;
   margin-bottom: 15px;
@@ -77,10 +77,62 @@
 
 .logo {
   width: 5%;
-  margin-left: 15px;
-  margin-top: 15px;
 }
 
 .logo:hover {
   cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #221903;
+}
+
+.ham {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ham:hover {
+  cursor: pointer;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+a:hover {
+  cursor: pointer;
+  background-color: #221903;
+  color: white;
+}
+
+.menu {
+  /* flex-direction: column; */
+  position: absolute;
+
+  top: 50px;
+  right: 20px;
+  width: 200px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.hide {
+  display: none;
 }
