@@ -2,16 +2,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* background-color: #ffd700; */
+}
+
+body {
   background-color: #ffd700;
 }
 
 .cell {
-  width: 70px;
-  height: 70px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   background-color: #221903;
   margin-bottom: 15px;
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 .cell:hover {
@@ -49,7 +53,7 @@
 
 .entry {
   width: 75px;
-  margin-left: 15px;
+  margin-left: 20px;
   height: 25px;
   border-width: 1px;
   border-style: solid;
@@ -76,7 +80,7 @@
 }
 
 .logo {
-  width: 5%;
+  width: 4%;
 }
 
 .logo:hover {
@@ -105,34 +109,66 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+
+  position: absolute;
+  width: 100vw;
 }
 
 a {
+  background-color: none;
   color: black;
   padding: 12px 16px;
   text-decoration: none;
-  display: block;
+  /* display: block; */
+  text-align: center;
 }
 a:hover {
   cursor: pointer;
-  background-color: #221903;
-  color: white;
+  background-color: #ffd700;
+  color: #221903;
 }
 
 .menu {
-  /* flex-direction: column; */
   position: absolute;
 
   top: 50px;
   right: 20px;
-  width: 200px;
+  width: 150px;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .hide {
   display: none;
+}
+
+@media (max-width: 750px) {
+  .cell {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #221903;
+    margin-bottom: 15px;
+    margin-left: 10px;
+  }
+
+  .entry {
+    width: 65px;
+    margin-left: 20px;
+    height: 25px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
 }
